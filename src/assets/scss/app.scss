@@ -2,6 +2,10 @@ body{
   background: #eee;
 }
 
+a{
+  text-decoration: none;
+}
+
 .header{
   height: 40px;
 }
@@ -9,10 +13,13 @@ body{
 .App{
   margin: 0px auto;
   width: 80%;
-  background-color: #eee;
 }
 
 .logo-header{
   width: 72px;
   height: 16px;
+}
+
+h1, h2, h3, h4, h5, h6{
+  font-weight: 500;
 }

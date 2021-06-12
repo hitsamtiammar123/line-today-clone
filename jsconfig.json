@@ -8,7 +8,10 @@
       "@mln-layouts/*": ["./src/layouts/*"],
       "@mln-images/*": ["./src/assets/images/*"],
       "@mln-svg/*": ["./src/assets/svg/*"],
-      "@mln-scss/*": ["./src/assets/scss/*"]
+      "@mln-scss/*": ["./src/assets/scss/*"],
+      "@mln-navigator": ["./src/navigator/index","./src/navigator/*"],
+      "@mln-redux": ["./src/redux/index", "./src/redux/*"],
+      "@mln-thunk": ["./src/thunk"]
     },
     "allowSyntheticDefaultImports": true
   },

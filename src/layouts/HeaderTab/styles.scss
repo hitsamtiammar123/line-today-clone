@@ -1,6 +1,7 @@
 .header-tab{
   height: 40px;
   overflow: auto;
+  flex: 1;
 
   .child-tab{
     font-weight: 500;
@@ -35,4 +36,49 @@
 .header-tab::-webkit-scrollbar-thumb:hover {
   background: #555;
   display: block;
+}
+
+.header-dropdown{
+  width: 40px;
+  background-color: white;
+  cursor: pointer;
+}
+
+.header-dropdown-content{
+  min-height: 120px;
+  background-color: white;
+  border-top: 1px solid gray;
+  width: 100%;
+  padding-top: 10px;
+  position: relative;
+  transition: min-height 0.5s;
+  flex-wrap:wrap;
+
+  .list-item{
+    border: 1px solid rgb(230, 230, 230);
+    font-size: 15px;
+    color: rgb(41, 41, 41);
+    font-weight: 500;
+    height: 39.6px;
+    background-color: white;
+    border-radius: 30px;
+    transition: background-color 0.5s;
+    min-width: 100px;
+    margin-right: 12px;
+    margin-bottom: 10px;
+  }
+
+  .list-item:hover{
+    background-color: #eee;
+  }
+}
+
+.header-dropdown-content.hidden{
+  min-height: 0px;
+  padding: 0px;
+  border: none;
+}
+
+.header-dropdown-label{
+  color:#292929;
 }
