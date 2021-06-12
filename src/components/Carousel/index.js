@@ -1,11 +1,4 @@
-import React, { useState } from 'react';
-import {
-  Carousel,
-  CarouselItem,
-  CarouselControl,
-  CarouselIndicators,
-  CarouselCaption
-} from 'reactstrap';
+import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { Separator } from '@mln-layouts'
 import  './styles.scss';
@@ -30,55 +23,68 @@ const items = [
 
 export default function MyCarousel(){
 
-  const [activeIndex, setActiveIndex] = useState(0);
-  const [animating, setAnimating] = useState(false);
+  const [numTranslate, setNumTranslate] = useState(0);
+  const [currIndex, setCurrIndex] = useState(0);
+  const intervalVal = useRef(null);
 
-  const next = () => {
-    if (animating) return;
-    const nextIndex = activeIndex === items.length - 1 ? 0 : activeIndex + 1;
-    setActiveIndex(nextIndex);
+  useEffect(() => {
+    intervalVal.current = setTimeout(() => {
+      toNextItem();
+    }, 1500);
+
+    return () => {
+      clearTimeout(intervalVal.current);
+    }
+  },[currIndex, numTranslate]);
+
+  function toNextItem(){
+    if(numTranslate === -100 * (items.length - 1)){
+      setCurrIndex(0);
+      return setNumTranslate(0);
+    }
+    setNumTranslate(numTranslate - 100);
+    setCurrIndex(currIndex + 1);
   }
 
-  const previous = () => {
-    if (animating) return;
-    const nextIndex = activeIndex === 0 ? items.length - 1 : activeIndex - 1;
-    setActiveIndex(nextIndex);
+  function toPrevItem(){
+    if(numTranslate === 0){
+      setCurrIndex(items.length - 1);
+      return setNumTranslate((items.length - 1) * -100);
+    }
+    setNumTranslate(numTranslate + 100);
+    setCurrIndex(currIndex - 1);
   }
 
-  const goToIndex = (newIndex) => {
-    if (animating) return;
-    setActiveIndex(newIndex);
+
+  function onNextPress(){
+    toNextItem();
   }
 
-  const slides = items.map((item) => {
-    return (
-      <CarouselItem
-        onExiting={() => setAnimating(true)}
-        onExited={() => setAnimating(false)}
-        key={item.id}
-      >
-        <Link to="/">
-          <img src={item.src} className="img" alt={item.altText} />
-        </Link>
-        <CarouselCaption captionText="" captionHeader={item.altText}>
-          This is caption
-        </CarouselCaption>
-      </CarouselItem>
-    );
-  });
+  function onPrevPress(){
+    toPrevItem();
+  }
 
   return (
     <Separator>
-      <Carousel
-        activeIndex={activeIndex}
-        next={next}
-        previous={previous}
-      >
-        <CarouselIndicators items={items} activeIndex={activeIndex} onClickHandler={goToIndex} />
-        {slides}
-        <CarouselControl direction="prev" directionText="<" onClickHandler={previous} />
-        <CarouselControl direction="next" directionText=">" onClickHandler={next} />
-      </Carousel>
+      <div className="my-carousel d-flex flex-row">
+        {items.map(d => (
+          <Link
+            to="/"
+            key={d.id}
+            className="d-flex my-carousel-item flex-column justify-content-end" 
+            style={{ backgroundImage: `url(${d.src})`, transform: `translateX(${numTranslate}%)`}}></Link>
+        ))}
+        {/* <button className="btn-control next">{'>'}</button> */}
+      </div>
+      <div className="d-flex flex-1 flex-row justify-content-between btn-container">
+        <button onClick={onPrevPress} className="btn-control prev">{'<'}</button>
+        <button onClick={onNextPress} className="btn-control next">{'>'}</button>
+      </div>
+      <div className="d-flex title-outer-container">
+        <div className="title-container d-flex justify-content-center align-items-center">
+          <span className="title-span">{Array.isArray(items) && items.length && items[currIndex].altText}</span>
+        </div>
+      </div>
     </Separator>
   );
 }

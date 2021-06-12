@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
-import { BrowserRouter, Switch, Route, useLocation, Redirect } from 'react-router-dom';
+import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
 import loading from '@mln-svg/loading.svg'
 import { HeaderTab, Padder, Header, Content } from '@mln-layouts';
 import { onLoad, onLoadSuccess, onLoadFailed } from '@mln-redux/actions'
@@ -9,12 +9,13 @@ import './styles.scss';
 
 
 function AppNavigator({ loadData, mainFetch, mainAction, mainResponse }){
-  const { categoryList } = mainResponse;
+  const { categoryList } = mainResponse || {};
   
   useEffect(() => {
     // dispatch(loadDataProps());
     loadData();
   },[]);
+
 
   function loadingContent(){
     return (
@@ -25,7 +26,7 @@ function AppNavigator({ loadData, mainFetch, mainAction, mainResponse }){
   }
 
   function mainContent(){
-    if(mainAction === 'MAIN_FAILED'){
+    if(mainAction === 'MAIN_FAILED' || !Array.isArray(categoryList)){
       return (
         <div className="d-flex justify-content-center align-items-center loading-content">
           <h2>Sorry there is error when loading page click <a href="javascript:void(0)" onClick={() => loadData()}>here</a> to load again </h2>
@@ -35,8 +36,10 @@ function AppNavigator({ loadData, mainFetch, mainAction, mainResponse }){
 
     return (
       <BrowserRouter basename="/">
-        <Header />
-        <HeaderTab />
+        <header className="main-header">
+          <Header />
+          <HeaderTab />
+        </header>
         <div className="main-content">
           <Switch>
             <Route exact path="/">

@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import { Link, useLocation, useHistory } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import './styles.scss';
@@ -8,8 +8,14 @@ export default function HeaderTab(){
   const mainResponse = useSelector((state) => state.main.mainResponse);
   const location = useLocation();
   const history = useHistory();
-
   const [showDropDown, setShowDropDown] = useState(false);
+
+  useEffect(() => {
+    // return () => {
+    //   onHeaderDropDownClicked();
+    // }
+  },[])
+
   const catId = useMemo(() => {
     const pathname = location.pathname;
     const splitPathName = pathname.split('/');
@@ -19,7 +25,21 @@ export default function HeaderTab(){
 
   function onListItemClicked(d){
     history.push(`/category/${d.id}`);
+    onHeaderDropDownClicked();
     setShowDropDown(false);
+  }
+
+  function onHeaderDropDownClicked(){
+    console.log({showDropDown});
+    let overflowY;
+    if(!showDropDown){
+      overflowY = 'hidden';
+    }
+    else{
+      overflowY = 'scroll';
+    }
+    document.body.style.overflowY = overflowY;
+    setShowDropDown(!showDropDown)
   }
 
   const { categoryList } = mainResponse;
@@ -35,7 +55,7 @@ export default function HeaderTab(){
             <h6 className="header-dropdown-label">Kategori</h6>
           )}
         </div>
-        <div className="header-dropdown" onClick={() => setShowDropDown(!showDropDown)}>
+        <div className="header-dropdown" onClick={onHeaderDropDownClicked}>
           <svg data-v-36aeedd8="" xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 22 22">
             <path data-v-36aeedd8="" fill="currentColor" fillRule="evenodd" d="M16.168 10.022l-4.583 4.583a.825.825 0 01-1.083.074l-.084-.074-4.583-4.583L7 8.855l4 4 4-4 1.167 1.167z"></path>
           </svg>
@@ -46,6 +66,7 @@ export default function HeaderTab(){
         <button key={d.id} onClick={() => onListItemClicked(d)} className={`list-item ${Number(catId) === d.id ? 'active' : ''}`}>{d.name}</button>
       ))}
       </header>
+      {showDropDown && <div onClick={onHeaderDropDownClicked} className="backdrop-dropdown"></div>}
     </>
   )
 }

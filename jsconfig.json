@@ -12,7 +12,8 @@
       "@mln-navigator": ["./src/navigator/index","./src/navigator/*"],
       "@mln-redux": ["./src/redux/index", "./src/redux/*"],
       "@mln-thunk": ["./src/thunk"],
-      "@mln-components": ["./src/components/*"]
+      "@mln-components": ["./src/components/*"],
+      "@mln-hooks": ["./src/hooks"]
     },
     "allowSyntheticDefaultImports": true
   },

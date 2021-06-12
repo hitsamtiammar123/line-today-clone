@@ -3,5 +3,13 @@
 }
 
 .main-content{
-  
+  width: 100%;
+}
+
+.main-header{
+  position: fixed;
+  background-color: white;
+  z-index: 1;
+  width: 80vw;
+  margin: 0;
 }

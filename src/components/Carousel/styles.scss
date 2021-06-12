@@ -1,3 +1,29 @@
+.my-carousel{
+  width: 100%;
+  height: 340px;
+  overflow: hidden;
+  scroll-behavior: smooth;
+
+  .my-carousel-item{
+    min-width: 100%;
+    background-color: grey;
+    background-repeat: no-repeat;
+    background-size: cover;
+    transition: transform 0.4s ease-in-out;
+
+    .text-container{
+      margin: 0px 20%;
+      background-color: #dfe3eb;
+      height: 68px;
+    }
+
+    .link{
+      width: 100%;
+      height: 100%;
+    }
+  }
+}
+
 .img{
   width: 100%;
   height: 340px;
@@ -5,10 +31,49 @@
 }
 
 .title-container{
-  width: 300px;
-  height: 50px;
-  top: -10px;
-  background-color: gray;
+  width: 50%;
+  min-height: 80px;
+  background-color: rgba(238, 238, 238, 0.9);
+
+  .title-span{
+    font-weight: bold;
+    font-size: 20px;
+  }
+}
+
+.title-outer-container{
+  transform: translate(25%, -40px);
+  height: 0;
+}
+
+.btn-container{
+  width: 100%;
+  background-color: transparent;
+  /* transition: transf; */
+  transform: translateY(-200px);
+  height: 0px;
+}
+
+.btn-control{
+  width: 48px;
+  height: 48px;
+  border-radius: 40px;
+  background-color: transparent;
+  transition: background-color 0.4s;
+  color: white;
+  border: none;
+}
+
+.btn-control.prev{
+  margin-left: 15px;
+}
+
+.btn-control.next{
+  margin-right: 15px;
+}
+
+.btn-control:hover{
+  background-color: #a8acb3;
 }
 
 @media screen and (max-width: 768px) {
@@ -20,5 +85,30 @@
 @media screen and (max-width: 425px) {
   .img{
     height: auto;
+  }
+}
+
+@media screen and (max-width: 426px) {
+  .my-carousel{
+    height: 230px;
+  }
+
+  .btn-container{
+    transform: translateY(-133px);
+  }
+
+  .btn-control{
+    width: 30px;
+    height: 30px;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .my-carousel{
+    height: 180px;
+  }
+
+  .btn-container{
+    transform: translateY(-113px);
   }
 }

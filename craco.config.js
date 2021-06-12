@@ -11,6 +11,7 @@ module.exports = {
       '@mln-redux': path.resolve(__dirname, 'src/redux'),
       '@mln-thunk': path.resolve(__dirname, 'src/thunk'),
       '@mln-components': path.resolve(__dirname, 'src/components'),
+      '@mln-hooks': path.resolve(__dirname, 'src/hooks')
     }
   }
 }
