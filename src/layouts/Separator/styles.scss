@@ -1,0 +1,9 @@
+.with-padding{
+  padding: 0px 50px;
+}
+
+@media screen and (max-width: 426px) {
+    .with-padding{
+      padding: 0px;
+    }
+}

@@ -1,0 +1,19 @@
+.star-img{
+  .bookmark-btn{
+    width: 30px;
+    height: 30px;
+    border-radius: 20px;
+    cursor: pointer;
+    background-color: white;
+    margin-left: 5px;
+    margin-top: 3px;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+  }
+}
+
+.star-img:hover{
+  .bookmark-btn{
+    opacity: 1;
+  }
+}

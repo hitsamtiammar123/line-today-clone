@@ -2,8 +2,9 @@ body{
   background: #eee;
 }
 
-a{
+a, a *{
   text-decoration: none;
+  color: black;
 }
 
 .header{
@@ -22,4 +23,17 @@ a{
 
 h1, h2, h3, h4, h5, h6{
   font-weight: 500;
+}
+
+.title{
+  font-size: 30px;
+  font-weight: bold;
+}
+
+.text-overflow-hidden{
+  overflow: hidden;
+}
+
+.flex-1{
+  flex: 1;
 }

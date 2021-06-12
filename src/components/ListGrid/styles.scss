@@ -1,0 +1,41 @@
+.grid-content{
+  width: 100%;
+}
+
+.grid-item{
+  width: 33.33333%;
+
+  .img{
+    width: 95%;
+    height: 191.25px;
+    background-size: cover;
+  }
+  
+  h2{
+    font-size: 20px;
+    margin-top: 10px
+  }
+
+  span{
+    font-size: 15px;
+    color: #9f9f9f;
+  }
+
+  .hyperlink{
+    width: 95%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .grid-item{
+    width: 50%;
+  }
+}
+
+@media screen and (max-width: 426px) {
+  .grid-item{
+    width: 100%;
+  }
+}
