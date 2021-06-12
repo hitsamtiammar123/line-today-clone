@@ -9,7 +9,8 @@ module.exports = {
       '@mln-scss': path.resolve(__dirname, 'src/assets/scss'),
       '@mln-navigator': path.resolve(__dirname, 'src/navigator'),
       '@mln-redux': path.resolve(__dirname, 'src/redux'),
-      '@mln-thunk': path.resolve(__dirname, 'src/thunk')
+      '@mln-thunk': path.resolve(__dirname, 'src/thunk'),
+      '@mln-components': path.resolve(__dirname, 'src/components'),
     }
   }
 }

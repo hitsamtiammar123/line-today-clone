@@ -40,7 +40,7 @@ function AppNavigator({ loadData, mainFetch, mainAction, mainResponse }){
         <div className="main-content">
           <Switch>
             <Route exact path="/">
-              <Redirect to={categoryList.length && `/category/${categoryList[0].id}`}/>
+              <Redirect to={categoryList.length ? `/category/${categoryList[0].id}` : '#'}/>
             </Route>
             {categoryList?.map((d) => (
               <Route key={d.id} path={`/category/${d.id}`}>

@@ -1,0 +1,38 @@
+.title{
+  font-size: 30px;
+  font-weight: bold;
+}
+
+.item-img{
+  width: 250px;
+  height: 150px;
+  background-size: cover;
+
+  .bookmark-btn{
+    width: 30px;
+    height: 30px;
+    border-radius: 20px;
+    cursor: pointer;
+    background-color: white;
+    margin-left: 5px;
+    margin-top: 3px;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+  }
+}
+
+.item-img:hover{
+  .bookmark-btn{
+    opacity: 1;
+  }
+}
+
+.item-title{
+  line-height: 22px;
+  font-size: 25px;
+  font-weight: 500;
+}
+
+.black, .black:hover{
+  color: black;
+}
