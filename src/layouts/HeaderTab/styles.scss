@@ -1,0 +1,38 @@
+.header-tab{
+  height: 40px;
+  overflow: auto;
+
+  .child-tab{
+    font-weight: 500;
+    min-width: 100px;
+    color: rgb(159, 159, 159);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+/* width */
+.header-tab::-webkit-scrollbar {
+  width: 10px;
+  height: 5px;
+}
+
+/* Track */
+.header-tab::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  display: none;
+}
+
+/* Handle */
+.header-tab::-webkit-scrollbar-thumb {
+  background: #888;
+  display: none;
+}
+
+/* Handle on hover */
+.header-tab::-webkit-scrollbar-thumb:hover {
+  background: #555;
+  display: block;
+}

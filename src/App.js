@@ -1,23 +1,19 @@
-import logo from './logo.svg';
-import './App.css';
+import { Link } from 'react-router-dom';
+import './assets/bootstrap/bootstrap.scss';
+import '@mln-scss/app.scss';
+import logo from './assets/svg/linetoday.svg';
+import { HeaderTab, Padder } from '@mln-layouts';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Padder>
+        <header className="d-flex flex-row header justify-content-between">
+          <img alt="Logo Header" className="logo-header" src={logo}/>
+          <a href="#">Show Bookmark</a>
+        </header>
+        <HeaderTab />
+      </Padder>
     </div>
   );
 }

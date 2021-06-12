@@ -1,0 +1,16 @@
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "target": "es6",
+    "baseUrl": ".",
+    "jsx": "react",
+    "paths": {
+      "@mln-layouts/*": ["./src/layouts/*"],
+      "@mln-images/*": ["./src/assets/images/*"],
+      "@mln-svg/*": ["./src/assets/svg/*"],
+      "@mln-scss/*": ["./src/assets/scss/*"]
+    },
+    "allowSyntheticDefaultImports": true
+  },
+  "exclude": ["node_modules", "build"]
+}
