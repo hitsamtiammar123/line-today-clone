@@ -1,6 +1,6 @@
 body{
   background: #eee;
-  overflow-x: hidden;
+  overflow-x: hidden !important;
 }
 
 a, a *{
@@ -37,4 +37,10 @@ h1, h2, h3, h4, h5, h6{
 
 .flex-1{
   flex: 1;
+}
+
+@media screen and (max-width: 768px) {
+  .App{
+    width: 100vw;
+  }
 }

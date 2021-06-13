@@ -13,3 +13,10 @@
   width: 80vw;
   margin: 0;
 }
+
+@media screen and (max-width: 768px) {
+  .main-header{
+    position: fixed;
+    width: 100vw;
+  }
+}

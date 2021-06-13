@@ -5,6 +5,11 @@ import { StarButton } from '@mln-components';
 import { usePrevious } from '@mln-hooks';
 import './styles.scss';
 
+const transparentStyle = {
+  backgroundColor: 'transparent',
+  color: 'transparent'
+};
+
 export default function ListSlide(props){
   const { title } = props;
 
@@ -54,9 +59,9 @@ export default function ListSlide(props){
           </div>
         )) }
       </div>
-      <div>
+      <div className="d-flex flex-row justify-content-between btn-container-slide">
+        <button onClick={onPrevClick} style={currScroll !== 0 ? {} : transparentStyle} className="btn-slide prev">{'<'}</button>
         <button onClick={onNextClick} className="btn-slide next">{'>'}</button>
-        {currScroll !== 0 && <button onClick={onPrevClick} className="btn-slide prev">{'<'}</button>}
       </div>
     </Separator>
   )
