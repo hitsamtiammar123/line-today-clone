@@ -7,6 +7,14 @@ import { onLoad, onLoadSuccess, onLoadFailed } from '@mln-redux/actions'
 import Thunk from '@mln-thunk';
 import './styles.scss';
 
+let URL;
+
+if(process.env.NODE_ENV && process.env.NODE_ENV === 'development'){
+  URL = 'http://localhost:3010/portaljson';
+}
+else{
+  URL = 'https://ancient-beyond-19443.herokuapp.com/portaljson';
+}
 
 function AppNavigator({ loadData, mainFetch, mainAction, mainResponse }){
   const { categoryList, categories } = mainResponse || {};
@@ -83,7 +91,7 @@ const mapStatesToProps = (state) => ({
 });
 
 const mapDispatchToProps = {
-  loadData: (payload) => Thunk.get('http://localhost:3010/portaljson', payload, onLoad, onLoadSuccess, onLoadFailed),
+  loadData: (payload) => Thunk.get(URL, payload, onLoad, onLoadSuccess, onLoadFailed),
 }
 
 export default connect(mapStatesToProps, mapDispatchToProps)(AppNavigator);
