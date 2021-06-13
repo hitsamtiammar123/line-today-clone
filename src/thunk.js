@@ -16,6 +16,10 @@ const callAPI = (type,url, payload, onSend, onSuccess, onFailed) => {
   }
 
   return (dispatch) => {
+    if(!url){
+      return (dispatch) => dispatch({});
+    }
+
     dispatch(_onSend(payload));
     return api(url,{
       headers: {

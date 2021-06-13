@@ -9,12 +9,19 @@ import './styles.scss';
 
 
 function AppNavigator({ loadData, mainFetch, mainAction, mainResponse }){
-  const { categoryList } = mainResponse || {};
+  const { categoryList, categories } = mainResponse || {};
   
   useEffect(() => {
     // dispatch(loadDataProps());
     loadData();
   },[]);
+
+  function getMainData(index){
+    if(Array.isArray(categories)){
+      return categories[index];
+    }
+    return [];
+  }
 
 
   function loadingContent(){
@@ -29,7 +36,7 @@ function AppNavigator({ loadData, mainFetch, mainAction, mainResponse }){
     if(mainAction === 'MAIN_FAILED' || !Array.isArray(categoryList)){
       return (
         <div className="d-flex justify-content-center align-items-center loading-content">
-          <h2>Sorry there is error when loading page click <a href="javascript:void(0)" onClick={() => loadData()}>here</a> to load again </h2>
+          <h2>Sorry there is error when loading page click <span className="try-again" onClick={() => loadData()}>here</span> to load again </h2>
         </div>
       )
     }
@@ -45,9 +52,9 @@ function AppNavigator({ loadData, mainFetch, mainAction, mainResponse }){
             <Route exact path="/">
               <Redirect to={categoryList.length ? `/category/${categoryList[0].id}` : '#'}/>
             </Route>
-            {categoryList?.map((d) => (
+            {categoryList?.map((d, index) => (
               <Route key={d.id} path={`/category/${d.id}`}>
-                <Content data={d} />
+                <Content data={d} mainData={getMainData(index)} />
               </Route>
             ))}
           </Switch>

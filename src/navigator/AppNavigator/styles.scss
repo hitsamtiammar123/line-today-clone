@@ -4,6 +4,7 @@
 
 .main-content{
   width: 100%;
+  padding-top: 150px;
 }
 
 .main-header{
@@ -12,6 +13,16 @@
   z-index: 1;
   width: 80vw;
   margin: 0;
+}
+
+.try-again{
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+
+.try-again:hover{
+  color: blue;
 }
 
 @media screen and (max-width: 768px) {

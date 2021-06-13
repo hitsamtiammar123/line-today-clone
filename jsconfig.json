@@ -13,7 +13,8 @@
       "@mln-redux": ["./src/redux/index", "./src/redux/*"],
       "@mln-thunk": ["./src/thunk"],
       "@mln-components": ["./src/components/*"],
-      "@mln-hooks": ["./src/hooks"]
+      "@mln-hooks": ["./src/hooks"],
+      "@mln-utils": ["./src/utils"]
     },
     "allowSyntheticDefaultImports": true
   },

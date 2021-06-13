@@ -1,27 +1,9 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Link } from 'react-router-dom';
 import { Separator } from '@mln-layouts'
+import { getImageSrc, getUrl } from '@mln-utils';
 import  './styles.scss';
 
-const items = [
-  {
-    id: 1,
-    src: 'https://obs.line-scdn.net/0hXBYyshuAB21kAC48_tV4Ol5WBAJXbBRuADZWczRuWVkeMkczXm9LWEhTCwoeY0AzCjFKDUAAHFwbNkNoDGBL',
-    altText: 'Slide 1',
-  },
-  {
-    id: 2,
-    src: 'https://obs.line-scdn.net/0hXBYyshuAB21kAC48_tV4Ol5WBAJXbBRuADZWczRuWVkeMkczXm9LWEhTCwoeY0AzCjFKDUAAHFwbNkNoDGBL',
-    altText: 'Slide 2',
-  },
-  {
-    id: 3,
-    src: 'https://obs.line-scdn.net/0hXBYyshuAB21kAC48_tV4Ol5WBAJXbBRuADZWczRuWVkeMkczXm9LWEhTCwoeY0AzCjFKDUAAHFwbNkNoDGBL',
-    altText: 'Slide 3',
-  }
-];
-
-export default function MyCarousel(){
+export default function MyCarousel({data}){
 
   const [numTranslate, setNumTranslate] = useState(0);
   const [currIndex, setCurrIndex] = useState(0);
@@ -30,7 +12,7 @@ export default function MyCarousel(){
   useEffect(() => {
     intervalVal.current = setTimeout(() => {
       toNextItem();
-    }, 1500);
+    }, 2000);
 
     return () => {
       clearTimeout(intervalVal.current);
@@ -38,7 +20,7 @@ export default function MyCarousel(){
   },[currIndex, numTranslate]);
 
   function toNextItem(){
-    if(numTranslate === -100 * (items.length - 1)){
+    if(numTranslate === -100 * (data.length - 1)){
       setCurrIndex(0);
       return setNumTranslate(0);
     }
@@ -48,8 +30,8 @@ export default function MyCarousel(){
 
   function toPrevItem(){
     if(numTranslate === 0){
-      setCurrIndex(items.length - 1);
-      return setNumTranslate((items.length - 1) * -100);
+      setCurrIndex(data.length - 1);
+      return setNumTranslate((data.length - 1) * -100);
     }
     setNumTranslate(numTranslate + 100);
     setCurrIndex(currIndex - 1);
@@ -64,15 +46,21 @@ export default function MyCarousel(){
     toPrevItem();
   }
 
+  if(data.length === 0){
+    return null;
+  }
+
   return (
     <Separator>
       <div className="my-carousel d-flex flex-row">
-        {items.map(d => (
-          <Link
-            to="/"
+        {data.map(d => (
+          <a
+            href={getUrl(d)}
             key={d.id}
             className="d-flex my-carousel-item flex-column justify-content-end" 
-            style={{ backgroundImage: `url(${d.src})`, transform: `translateX(${numTranslate}%)`}}></Link>
+            style={{ transform: `translateX(${numTranslate}%)`}}>
+              <img className="img" src={getImageSrc(d)} alt={d.title} />
+            </a>
         ))}
         {/* <button className="btn-control next">{'>'}</button> */}
       </div>
@@ -82,7 +70,7 @@ export default function MyCarousel(){
       </div>
       <div className="d-flex title-outer-container">
         <div className="title-container d-flex justify-content-center align-items-center">
-          <span className="title-span">{Array.isArray(items) && items.length && items[currIndex].altText}</span>
+          <span className="title-span">{Array.isArray(data) && data.length && data[currIndex].title}</span>
         </div>
       </div>
     </Separator>

@@ -1,22 +1,40 @@
 import React, { useRef, useState } from 'react';
-import { Link } from 'react-router-dom';
 import { Separator } from '@mln-layouts';
 import { StarButton } from '@mln-components'; 
 import { usePrevious } from '@mln-hooks';
+import { getImageSrc, getUrl } from '@mln-utils';
 import './styles.scss';
 
 const transparentStyle = {
   backgroundColor: 'transparent',
-  color: 'transparent'
+  color: 'transparent',
+  border: 'none',
 };
 
 export default function ListSlide(props){
-  const { title } = props;
+  const { title, data } = props;
 
   const slideWrapper = useRef(null);
+  const controlFlag = useRef(true);
   const [currScroll, setCurrentScroll] = useState(0);
+  const [counter, setCounter] = useState(0);
+  const [showNextButton, setShowNextButton] = useState(true); 
   const prevCurrScroll = usePrevious(currScroll);
-  const [counter, setCounter] = useState(0); 
+
+  function debounceControlFlag(){
+    setTimeout(() => {
+      controlFlag.current = true;
+    },500);
+    controlFlag.current = false;
+  }
+
+  function startDebounce(callback){
+    if(!controlFlag.current){
+      return;
+    }
+    debounceControlFlag();
+    callback();
+  }
 
   function onNextClick(){
     if(slideWrapper.current){
@@ -26,10 +44,16 @@ export default function ListSlide(props){
       if(counter !== 10){
         setCounter(counter + 1);
       }
+      if(Math.abs(currScroll - prevCurrScroll) <= 0 || counter === data.length - 1){
+        setShowNextButton(false);
+      }
     }
   }
 
   function onPrevClick(){
+    if(showNextButton === false){
+      setShowNextButton(true);
+    }
     if(slideWrapper.current){
       let s = slideWrapper.current.scrollLeft - 308;
       if(s < 0){
@@ -47,21 +71,21 @@ export default function ListSlide(props){
     <Separator withPadding>
       <h2 className="title mb-3">{title}</h2>
       <div ref={slideWrapper} className="d-flex slide-wrapper">
-        {Array.from(Array(10)).map((i,index) => (
-          <div key={index} className="d-flex flex-column slide-content">
-            <div className="slide-img star-img" style={{backgroundImage: `url('https://obs.line-scdn.net/0hXBYyshuAB21kAC48_tV4Ol5WBAJXbBRuADZWczRuWVkeMkczXm9LWEhTCwoeY0AzCjFKDUAAHFwbNkNoDGBL')`}}>
+        {data.map((d) => (
+          <div key={d.id} className="d-flex flex-column slide-content">
+            <div className="slide-img star-img" style={{backgroundImage: `url('${getImageSrc(d)}`}}>
               <StarButton />
             </div>
-            <Link to="/" className="d-flex flex-column slide-text-container">
-              <h2>This is Title {index + 1}</h2>
-              <span>This is SubTitle</span>
-            </Link>
+            <a href={getUrl(d)} className="d-flex flex-column slide-text-container">
+              <h2>{d.title}</h2>
+              <span>{d.publisher}</span>
+            </a>
           </div>
         )) }
       </div>
       <div className="d-flex flex-row justify-content-between btn-container-slide">
-        <button onClick={onPrevClick} style={currScroll !== 0 ? {} : transparentStyle} className="btn-slide prev">{'<'}</button>
-        <button onClick={onNextClick} className="btn-slide next">{'>'}</button>
+        <button onClick={() => startDebounce(onPrevClick)} style={currScroll !== 0 ? {} : transparentStyle} className="btn-slide prev">{'<'}</button>
+        <button onClick={() => startDebounce(onNextClick)} style={showNextButton ? {} : transparentStyle} className="btn-slide next">{'>'}</button>
       </div>
     </Separator>
   )

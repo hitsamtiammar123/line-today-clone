@@ -1,13 +1,17 @@
-import React from 'react';
-import Star from '@mln-svg/star.svg'
+import React, { useState } from 'react';
+import Star2 from '@mln-svg/star-2.svg'
+import StarYellow from '@mln-svg/star-yellow.svg'
 import './styles.scss';
 
 export default function StarButton(){
+
+  const [isBookmark, setIsBookmark] = useState(false);
+
   return (
     <div onClick={() => {
-      console.log('bookmark clicked')
+     setIsBookmark(!isBookmark);
     }} className="bookmark-btn">
-      <img src={Star} alt="Star"/>
+      <img src={isBookmark ? StarYellow : Star2} alt="Star"/>
     </div>
   )
 }

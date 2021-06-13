@@ -30,7 +30,6 @@ export default function HeaderTab(){
   }
 
   function onHeaderDropDownClicked(){
-    console.log({showDropDown});
     let overflowY;
     if(!showDropDown){
       overflowY = 'hidden';

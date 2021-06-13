@@ -1,0 +1,236 @@
+export const CAROUSEL = 'CAROUSEL';
+export const GRID_VIEW = 'GRID_VIEW';
+export const LIST_VIEW = 'LIST_VIEW';
+export const SLIDE_VIEW = 'SLIDE_VIEW';
+
+const templates ={
+  100272: {
+    '59_0': CAROUSEL,
+    '6301_6': GRID_VIEW,
+    '73': LIST_VIEW,
+    '59_1': GRID_VIEW,
+    '6301_5': SLIDE_VIEW,
+    '6301_3': SLIDE_VIEW,
+    '6301_7': GRID_VIEW,
+    '6303_2': GRID_VIEW,
+    '6_100272': GRID_VIEW,
+    '6301_0': LIST_VIEW
+  },
+  100270: {
+    '50': CAROUSEL,
+    '73': LIST_VIEW,
+    '59_0': GRID_VIEW,
+    '59_1': GRID_VIEW,
+    '6_100270': GRID_VIEW,
+    '63_5': LIST_VIEW,
+    '63_14': LIST_VIEW,
+    '59_2': GRID_VIEW,
+    '63_10': GRID_VIEW,
+    '6301_9': GRID_VIEW,
+    '6301_12': GRID_VIEW,
+    '6301_13': GRID_VIEW,
+    '63_6': GRID_VIEW,
+    '6301_7': GRID_VIEW,
+    '6301_8': GRID_VIEW,
+    '6301_11': GRID_VIEW,
+  },
+  100271: {
+    '59_0': CAROUSEL,
+    '59_1': GRID_VIEW,
+    '59_2': GRID_VIEW,
+    '6301_3': SLIDE_VIEW,
+    '6301_4': GRID_VIEW,
+    '6301_5': GRID_VIEW,
+    '6301_6': GRID_VIEW,
+    '6_100271': LIST_VIEW,
+    '6303_2': GRID_VIEW,
+    '6303_0': GRID_VIEW
+  },
+  100274: {
+    '59_0': CAROUSEL,
+    '59_1': GRID_VIEW,
+    '59_2': GRID_VIEW,
+    '59_3': GRID_VIEW,
+    '59_4': LIST_VIEW,
+    '59_5': GRID_VIEW,
+    '73': GRID_VIEW,
+    '6301_4': GRID_VIEW,
+    '63_5': SLIDE_VIEW,
+    '6301_6': GRID_VIEW,
+    '6302_1': GRID_VIEW,
+    '6301_0': SLIDE_VIEW 
+  },
+  100641: {
+    '50': CAROUSEL,
+    '73': LIST_VIEW,
+    '59_0': GRID_VIEW,
+    '59_1': GRID_VIEW,
+    '59_2': GRID_VIEW,
+    '59_3': GRID_VIEW,
+    '6301_0': LIST_VIEW,
+    '6_100641': LIST_VIEW
+  },
+  100608: {
+    '73': CAROUSEL,
+    '59_0': SLIDE_VIEW,
+    '6_100608': LIST_VIEW,
+    '6301_1': GRID_VIEW
+  },
+  100665: {
+    '59_0': CAROUSEL,
+    '59_1': GRID_VIEW,
+    '6_100665': LIST_VIEW
+  },
+  100472: {
+    '50': CAROUSEL,
+    '59_0': SLIDE_VIEW,
+    '59_1': SLIDE_VIEW,
+    '59_2': SLIDE_VIEW,
+    '6_100472': LIST_VIEW,
+    '59_3': GRID_VIEW,
+    '59_4': SLIDE_VIEW,
+    '59_5': SLIDE_VIEW,
+    '59_6': LIST_VIEW,
+    '59_7': LIST_VIEW,
+    '59_8': LIST_VIEW,
+    '59_9': SLIDE_VIEW,
+    '59_10': SLIDE_VIEW,
+    '59_11': LIST_VIEW,
+    '59_12': SLIDE_VIEW,
+    '59_13': SLIDE_VIEW,
+    '6301_1': GRID_VIEW
+  },
+  100622: {
+    '6301_0': LIST_VIEW,
+    '6_100622': LIST_VIEW,
+    '6303_2': GRID_VIEW
+  },
+  100609: {
+    '73': CAROUSEL,
+    '59_0': GRID_VIEW,
+    '6301_1': GRID_VIEW,
+    '86': LIST_VIEW,
+    '6303_2': GRID_VIEW,
+    '6_100609': LIST_VIEW,
+  },
+  100602: {
+    '73': CAROUSEL,
+    '6_100602': LIST_VIEW,
+    '6301_0': LIST_VIEW,
+    '6303_2': GRID_VIEW,
+  },
+  100549: {
+    '66': CAROUSEL,
+    '68_0': LIST_VIEW,
+    '79': LIST_VIEW,
+    '80': LIST_VIEW,
+    '6301_0': GRID_VIEW
+  },
+  100584: {
+    '59_0': GRID_VIEW,
+    '59_1': GRID_VIEW,
+    '59_2': GRID_VIEW,
+    '59_3': GRID_VIEW,
+    '59_4': GRID_VIEW,
+    '59_5': GRID_VIEW,
+    '59_6': GRID_VIEW,
+    '59_7': GRID_VIEW,
+    '59_8': LIST_VIEW,
+    '59_9': GRID_VIEW,
+    '59_10': GRID_VIEW,
+    '59_11': SLIDE_VIEW,
+    '59_12': SLIDE_VIEW,
+    '59_13': SLIDE_VIEW,
+    '59_14': SLIDE_VIEW,
+    '59_15': GRID_VIEW,
+    '59_16': GRID_VIEW,
+    '59_17': GRID_VIEW,
+    '59_18': SLIDE_VIEW,
+    '59_19': SLIDE_VIEW,
+    '59_20': SLIDE_VIEW,
+    '59_21': SLIDE_VIEW,
+  },
+  100673: {
+    '59_0': CAROUSEL,
+    '59_1': LIST_VIEW,
+    '59_2': GRID_VIEW,
+    '59_3': SLIDE_VIEW,
+    '59_4': SLIDE_VIEW,
+    '59_5': SLIDE_VIEW,
+    '59_6': SLIDE_VIEW,
+    '59_7': SLIDE_VIEW,
+    '59_8': GRID_VIEW,    
+  },
+  100582: {
+    '50': CAROUSEL,
+    '73': GRID_VIEW,
+    '6301_0': GRID_VIEW
+  },
+  100603: {
+    '73': CAROUSEL,
+    '6_100603': LIST_VIEW,
+    '6303_2': GRID_VIEW,
+    '6301_0': GRID_VIEW
+  },
+  100667: {
+    '59_0': CAROUSEL,
+    '59_1': GRID_VIEW,
+    '59_2': GRID_VIEW,
+    '59_3': GRID_VIEW,
+    '59_4': LIST_VIEW,
+    '59_5': GRID_VIEW,
+  },
+  100627: {
+    '73': CAROUSEL,
+    '6303_2': GRID_VIEW,
+    '6301_0': GRID_VIEW,
+    '6_100627': LIST_VIEW,
+  },
+  100663: {
+    '50': CAROUSEL,
+    '59_0': LIST_VIEW,
+    '59_1': LIST_VIEW,
+    '59_2': LIST_VIEW,
+    '59_3': SLIDE_VIEW,
+    '59_4': SLIDE_VIEW,
+    '59_5': SLIDE_VIEW,
+    '59_6': SLIDE_VIEW,
+    '59_7': SLIDE_VIEW,
+    '59_8': GRID_VIEW,
+    '59_9': LIST_VIEW,
+    '59_10': LIST_VIEW,
+    '59_11': LIST_VIEW,
+    '59_12': LIST_VIEW,
+    '59_13': LIST_VIEW,
+    '59_14': LIST_VIEW,
+    '6_100663': LIST_VIEW
+  },
+  100604: {
+    '73': CAROUSEL,
+    '6303_2': GRID_VIEW,
+    '6_100604': LIST_VIEW,
+    '6301_0': GRID_VIEW
+  },
+  100634: {
+    '50': CAROUSEL,
+    '59_0': SLIDE_VIEW,
+    '59_1': SLIDE_VIEW,
+    '59_2': SLIDE_VIEW,
+    '59_3': SLIDE_VIEW,
+    '59_4': SLIDE_VIEW,
+    '59_5': SLIDE_VIEW,
+    '59_6': GRID_VIEW,
+    '59_7': GRID_VIEW,
+    '59_8': GRID_VIEW,
+    '59_9': GRID_VIEW,
+    '6301_0': GRID_VIEW,
+    '6_100634': LIST_VIEW,
+  },
+  100681: {
+    '59_0': CAROUSEL,
+    '73': GRID_VIEW,
+    '6_100681': LIST_VIEW
+  }
+};
+
+export default templates
