@@ -1,11 +1,11 @@
 import React from 'react';
 import { Separator } from '@mln-layouts';
 import { StarButton } from '@mln-components';
-import { getImageSrc, getUrl } from '@mln-utils';
+import { getImageSrc, getUrl, checkBookmark } from '@mln-utils';
 import './styles.scss';
 
 export default function ListGrid(props){
-  const { title, data} = props;
+  const { title, data, bookmarks } = props;
   return (
     <Separator withPadding>
       <h2 className="title mb-3">{title}</h2>
@@ -13,7 +13,7 @@ export default function ListGrid(props){
         {data.map((d) => (
           <div key={d.id} className="d-flex flex-column mt-4 grid-item">
               <div className="img star-img" style={{backgroundImage: `url('${getImageSrc(d)}')`}}>
-                <StarButton />
+                <StarButton isBookmark={checkBookmark(d, bookmarks)} data={d} />
               </div>
             <a className="hyperlink" href={getUrl(d)}>
               <h2>{d.title}</h2>

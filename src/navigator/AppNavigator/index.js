@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
 import loading from '@mln-svg/loading.svg'
-import { HeaderTab, Padder, Header, Content } from '@mln-layouts';
+import { HeaderTab, Padder, Header, Content, Bookmarks} from '@mln-layouts';
 import { onLoad, onLoadSuccess, onLoadFailed } from '@mln-redux/actions'
 import Thunk from '@mln-thunk';
 import './styles.scss';
@@ -57,6 +57,9 @@ function AppNavigator({ loadData, mainFetch, mainAction, mainResponse }){
                 <Content data={d} mainData={getMainData(index)} />
               </Route>
             ))}
+            <Route path="/bookmarks">
+              <Bookmarks />
+            </Route>
           </Switch>
          
         </div>

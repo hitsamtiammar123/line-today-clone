@@ -11,4 +11,14 @@ export const onLoadSuccess = (payload) => ({
 export const onLoadFailed = (payload) => ({
   type: 'MAIN_FAILED',
   payload,
+});
+
+export const setBookmark = (payload) => ({
+  type: 'SET_BOOKMARK',
+  payload,
+});
+
+export const removeBookmark = (payload) => ({
+  type: 'REMOVE_BOOKMARK',
+  payload,
 })

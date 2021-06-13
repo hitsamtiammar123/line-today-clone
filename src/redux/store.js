@@ -1,6 +1,8 @@
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux'
 import ReduxThunk from 'redux-thunk';
-import { main, bookmarks} from './initialStates';
+import { persistStore, persistReducer } from 'redux-persist';
+import storage from 'redux-persist/lib/storage';
+import { main, bookmarks } from './initialStates';
 
 function mainReducers(state = main, action){
   const { payload, type } = action;
@@ -37,7 +39,10 @@ function bookmarkReducers(state = bookmarks, action){
     case 'SET_BOOKMARK':
       return {
         ...state,
-        list: state.list.concat(payload),
+        list: [
+          ...state.list,
+          payload
+        ],
         action: type,
       }
     case 'REMOVE_BOOKMARK':
@@ -59,8 +64,21 @@ const composeEnhancer =
 const reducers = combineReducers({
   main: mainReducers,
   bookmark: bookmarkReducers,
-})
+});
 
-const store = createStore(reducers, composeEnhancer(applyMiddleware(ReduxThunk)));
+const persistConfig = {
+  key: 'line-today-clone-by-hitsam-tiammar',
+  storage,
+  whitelist: ['bookmark']
+};
+
+const persistedReducer = persistReducer(persistConfig, reducers)
+
+const store = createStore(persistedReducer, composeEnhancer(applyMiddleware(ReduxThunk)));
+const persistor = persistStore(store)
+
+export {
+  store, persistor
+};
 
 export default store;

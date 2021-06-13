@@ -2,7 +2,7 @@ import React, { useRef, useState } from 'react';
 import { Separator } from '@mln-layouts';
 import { StarButton } from '@mln-components'; 
 import { usePrevious } from '@mln-hooks';
-import { getImageSrc, getUrl } from '@mln-utils';
+import { getImageSrc, getUrl, checkBookmark } from '@mln-utils';
 import './styles.scss';
 
 const transparentStyle = {
@@ -12,7 +12,7 @@ const transparentStyle = {
 };
 
 export default function ListSlide(props){
-  const { title, data } = props;
+  const { title, data, bookmarks } = props;
 
   const slideWrapper = useRef(null);
   const controlFlag = useRef(true);
@@ -74,7 +74,7 @@ export default function ListSlide(props){
         {data.map((d) => (
           <div key={d.id} className="d-flex flex-column slide-content">
             <div className="slide-img star-img" style={{backgroundImage: `url('${getImageSrc(d)}`}}>
-              <StarButton />
+              <StarButton isBookmark={checkBookmark(d, bookmarks)} data={d} />
             </div>
             <a href={getUrl(d)} className="d-flex flex-column slide-text-container">
               <h2>{d.title}</h2>

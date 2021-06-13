@@ -3,3 +3,4 @@ export { default as Padder } from './Padder';
 export { default as Header } from './Header';
 export { default as Content } from './Content';
 export { default as Separator } from './Separator';
+export { default as Bookmarks } from './Bookmarks';

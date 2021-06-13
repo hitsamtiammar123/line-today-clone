@@ -1,33 +1,14 @@
 import React, { useEffect, useRef } from 'react';
 import { useLocation } from 'react-router-dom';
-import { AnimatePresence, motion } from 'framer-motion';
+import { useSelector } from 'react-redux';
 import { Carousel, ListRow, ListGrid, ListSlide } from '@mln-components';
 import templates_config, { CAROUSEL, GRID_VIEW, LIST_VIEW, SLIDE_VIEW} from './templates';
+import AnimatedContainer from '@mln-layouts/AnimatedContainer';
 import './styles.scss';
-
-const pageVariants = {
-  initial: {
-    opacity: 0,
-    y: 100,
-  },
-  in: {
-    opacity: 1,
-    y: 0
-  },
-  out: {
-    opacity: 0,
-    y: -100
-  },
-};
-
-const pageTransition = {
-  type: 'tween',
-  ease: 'anticipate',
-  duration: 0.7,
-};
 
 export default function Content({ data, mainData}){
   const location = useLocation();
+  const bookmarks = useSelector((state) => state.bookmark.list);
   const content = useRef(null);
 
   useEffect(() => {
@@ -61,11 +42,11 @@ export default function Content({ data, mainData}){
             case CAROUSEL:
               return <Carousel key={id} data={renderJSON} />
             case LIST_VIEW:
-              return <ListRow key={id} title={d.title || ''} data={renderJSON}/>;
+              return <ListRow key={id} bookmarks={bookmarks} title={d.title || ''} data={renderJSON}/>;
             case GRID_VIEW:
-              return <ListGrid key={id} title={d.title || ''} data={renderJSON}/>
+              return <ListGrid key={id} bookmarks={bookmarks} title={d.title || ''} data={renderJSON}/>
             case SLIDE_VIEW:
-              return <ListSlide key={id} title={d.title || ''} data={renderJSON}/>
+              return <ListSlide key={id} bookmarks={bookmarks} title={d.title || ''} data={renderJSON}/>
             default:
           }
         }
@@ -75,20 +56,11 @@ export default function Content({ data, mainData}){
     return null;
   }
 
-  console.log({data, mainData});
-
   return (
-    <AnimatePresence>
-      <motion.div 
-        initial="initial"
-        animate="in"
-        exit="out"
-        variants={pageVariants}
-        transition={pageTransition}>
-        <div ref={content} className="content">
-          {renderContent()}
-        </div>
-      </motion.div>
-    </AnimatePresence>
+    <AnimatedContainer>
+      <div ref={content} className="content">
+        {renderContent()}
+      </div>
+    </AnimatedContainer>
   )
 }

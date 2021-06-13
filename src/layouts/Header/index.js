@@ -9,7 +9,7 @@ export default function Header(){
       <Link to="/">
        <img alt="Logo Header" className="logo-header" src={logo} />
       </Link>
-      <Link to="/" className="show-bookmark">Show bookmark</Link>
+      <Link to="/bookmarks" className="show-bookmark">Show bookmark</Link>
     </header>
   )
 }
